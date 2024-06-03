@@ -1,23 +1,34 @@
 import React from 'react'
 import './Customer.css'
 import axios from 'axios'
+import { useContext } from 'react'
+import CounterContext from '../../context/Context'
+
+
 function Customer() {
     console.log("Customer render")
+    const{getDoctors}=useContext(CounterContext)
+    
+  
     let datass={
-        "name": "Gabrielle Fawdry",
-        "email": "gfawdry0@admin.ch",
-        "address": "Apt 153",
-        "city": "Iralaya",
-        "phone": "+504 473 228 7043"
+        name: "zeki",
+        email: "gokay@admin.ch",
+        address: "Apt 157",
+        city: "Cehennem",
+        phone: "+504 473 228 7743"
       }
     const push = ()=>{
-        axios.post("https://convenient-kristal-gokay-059f5b16.koyeb.app/api/v1/doctors",datass)
+        axios.post(import.meta.env.VITE_APP_BASEURL+"doctors",datass)
         .then(res=>(console.log(res)))
+    }
+    const down = ()=>{
+        getDoctors()
     }
   return (
     <div className='customer-container'>
         <h2>Müşteri Yönetimi</h2>
         <button onClick={push}>dsadsasda</button>
+        <button onClick={down}>check</button>
       <div className='customer-box'>
             <h3>Müşteri Listesi</h3>
             <div className='customer-filter'>

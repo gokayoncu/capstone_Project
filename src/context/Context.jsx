@@ -6,6 +6,7 @@ const CounterContext = createContext();
 
 export function CounterProvider({children}) {
   const [datas,setDatas]= useState()
+  console.log(datas)
   
   const getDoctors= async ()=>{
     axios
