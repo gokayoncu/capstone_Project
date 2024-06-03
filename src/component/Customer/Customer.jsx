@@ -11,7 +11,7 @@ function Customer() {
         "phone": "+504 473 228 7043"
       }
     const push = ()=>{
-        axios.post("http://convenient-kristal-gokay-059f5b16.koyeb.app/api/v1/doctors",datass)
+        axios.post("https://convenient-kristal-gokay-059f5b16.koyeb.app/api/v1/doctors",datass)
         .then(res=>(console.log(res)))
     }
   return (
