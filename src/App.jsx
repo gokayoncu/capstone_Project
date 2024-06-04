@@ -7,9 +7,6 @@ import Report from './component/report/Report'
 import Customer from './component/Customer/Customer'
 
 function App() {
-  console.log("App render")
-  
-  
   return (
     <div className='container'>
       <Navbar/>

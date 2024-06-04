@@ -1,12 +1,13 @@
-import React, { useContext } from 'react'
-import CounterContext from '../../context/Context'
+import React, { useContext, useState } from 'react'
+
 
 function Appointment() {
   console.log("appointment render")
+  
   return (
     <div>
-        <h2>Randevu Yönetimi</h2>
-        
+      <h2>Randevu Yönetimi</h2>
+
     </div>
   )
 }

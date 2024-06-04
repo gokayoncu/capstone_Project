@@ -112,7 +112,7 @@ function Navbar() {
               </a>
             </div>
           </div>
-          <input type="checkbox" id='plus' name='open'  style={{display:'none'}}/>
+          <input type="checkbox" id='plus' name='open' style={{display:'none'}} />
           <div className='hidden-menu'>
             <div className='hidden-link '>
               <NavLink to='/customer' className={'customer'}> Müşteriler</NavLink>
