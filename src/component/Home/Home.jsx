@@ -7,7 +7,7 @@ function Home() {
   return (    
   <div className='wrapper'>
     <div className='w-container'>
-        <input type="radio" name='slide' id='c1' defaultChecked/>
+        <input className='home-input' type="radio" name='slide' id='c1' defaultChecked/>
         <label htmlFor="c1" className='card'>
             <div className='row'>
               <div className="icon">
@@ -20,7 +20,7 @@ function Home() {
               </div>      
             </div>
         </label>
-        <input type="radio" name='slide' id='c2' defaultChecked/>
+        <input className='home-input' type="radio" name='slide' id='c2' defaultChecked/>
         <label htmlFor="c2" className='card'>
             <div className='row'>
               <div className="icon">
@@ -33,7 +33,7 @@ function Home() {
               </div>      
             </div>
         </label>
-        <input type="radio" name='slide' id='c3' defaultChecked/>
+        <input className='home-input' type="radio" name='slide' id='c3' defaultChecked/>
         <label htmlFor="c3" className='card'>
             <div className='row'>
               <div className="icon">
@@ -46,7 +46,7 @@ function Home() {
               </div>      
             </div>
         </label>
-        <input type="radio" name='slide' id='c4' defaultChecked/>
+        <input className='home-input' type="radio" name='slide' id='c4' defaultChecked/>
         <label htmlFor="c4" className='card'>
             <div className='row'>
               <div className="icon">
@@ -59,7 +59,7 @@ function Home() {
               </div>      
             </div>
         </label>
-        <input type="radio" name='slide' id='c5' defaultChecked/>
+        <input className='home-input' type="radio" name='slide' id='c5' defaultChecked/>
         <label htmlFor="c5" className='card'>
             <div className='row'>
               <div className="icon">
@@ -72,7 +72,7 @@ function Home() {
               </div>      
             </div>
         </label>
-        <input type="radio" name='slide' id='c6' defaultChecked/>
+        <input className='home-input' type="radio" name='slide' id='c6' defaultChecked/>
         <label htmlFor="c6" className='card'>
             <div className='row'>
               <div className="icon">

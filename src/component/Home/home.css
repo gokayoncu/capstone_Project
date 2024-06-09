@@ -79,7 +79,7 @@
         color: #000 ;
     }
 }
-input{
+.home-input{
     display: none;
 }
 input:checked + label{
