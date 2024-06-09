@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from 'react'
 import CounterContext from '../../context/Context'
 import { AiOutlineDelete } from "react-icons/ai";
 import { GrUpdate } from "react-icons/gr";
-import './appointment.css'
+import './Appointment.css'
 import axios from 'axios';
 
 
