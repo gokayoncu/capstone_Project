@@ -1,9 +1,9 @@
 import React, { useContext, useEffect, useState } from 'react'
-import './Customer.css'
 import CounterContext from '../../context/Context'
 import { AiOutlineDelete } from "react-icons/ai";
 import { GrUpdate } from "react-icons/gr";
 import axios from 'axios';
+import Animal from '../animal/Animal';
 
 
 
@@ -13,6 +13,8 @@ function Customer() {
     const {postCustomer,customers,getCustomer,deleteCustomer,getIdCustomer,error,succes,deleteError,deleteSucces,updateError,updateSucces}=useContext(CounterContext)
     const[updateId,setUpdateId] = useState()
     const [searchCustomer,setSearchCustomer] = useState(null)
+    const [searchError,setSearchError] = useState()
+    const [searchSucces,setSearchSucces] = useState(false)
     
     const [newcustomer,newSetCustomer]=useState({
         name : "",
@@ -29,24 +31,62 @@ function Customer() {
         city : ""
     })
 
+    const [searchCustomers,neSetSearchCustomer]=useState({
+        name : "",
+    })
+    const inputSearchChange= (e)=>{
+        const {name,value}= e.target;
+        neSetSearchCustomer({...searchCustomers,[name]:value})
+    }
+
     const searchCustomerByName= async(names)=>{
-        await axios
-            .get(import.meta.env.VITE_APP_BASEURL+"customers/searchByName?name="+names)
-            .then(res=>(setSearchCustomer(res.data.content)))
+        if(names.length>0){
+            try {
+                const response = await axios.get(import.meta.env.VITE_APP_BASEURL+"customers/searchByName?name="+names);
+                setSearchCustomer(response.data.content)
+                console.log(response.data.content)
+                if(response.data.content.length == 0){
+                    setSearchError("Customer not found")
+                    setTimeout(() => {
+                        setSearchError()
+                    }, 1000);
+                    setSearchCustomer(null)
+                }else{
+                    setSearchSucces(true)
+                    setTimeout(() => {
+                        setSearchSucces(false)
+                    }, 1000);
+                }            
+            } catch (error) {
+                setSearchError(error.message)
+                setTimeout(() => {
+                    setSearchError()
+                }, 1000);
+            }
+        }else{
+            setSearchError("Lütfen Boş Aramayın")
+            setTimeout(() => {
+                setSearchError()
+            }, 1000);
+        }
+
     }
+    
     const handleSearchByName = () =>{
-        const names="değişen 4"
-        searchCustomerByName(names)
+        searchCustomerByName(searchCustomers.name.toLocaleLowerCase())
+        neSetSearchCustomer({name:""})
+        console.log(searchCustomer)
     }
+    
+
     const handleShowAll = () =>{
         setSearchCustomer(null)
-        
     }
     const inputChange = (e)=>{
         const {name,value}= e.target;
-        newSetCustomer({...newcustomer,[name]:value})
+        const newValue= value.toLowerCase()
+        newSetCustomer({...newcustomer,[name]:newValue})
     }
-    
     
     useEffect(()=>{
         getCustomer()
@@ -93,9 +133,10 @@ function Customer() {
     const handleUpdateNewCustomer = () =>{
         getIdCustomer(updateId,updateCustomer)
         setTimeout(() => {
-            setUptade(!update)        
+            setUptade(!update)
+            setPutData(false)        
         }, 500);
-        setPutData(false)
+        
     }
     
   return (
@@ -112,7 +153,7 @@ function Customer() {
                 <input type="email" placeholder='Müşteri Email'/>
                 <input type="text" placeholder='Müşteri Adresi'/>
                 <input type="text" placeholder='Müşterinin Yaşadığı Şehir'/>
-                <input type='tel' placeholder='Müşteri Telefonu'/>
+                <input type='number' placeholder='Müşteri Telefonu'/>
                 <span>İşlemler</span>
             </div>            
             <div  className='customer-list'>
@@ -150,22 +191,24 @@ function Customer() {
                 }
             </div>           
         </div>
-        <div className='customer-search-box'>
-            <h3 style={{fontSize:26,marginBottom:25}}>Search Customer</h3>
+        <div className='customer-search-box' style={{marginLeft:480}}>
+            <h3 style={{fontSize:26,marginBottom:25}}>Müşteri Arayın</h3>
+            {searchSucces? searchSucces===true? <p className='message-succes' style={{marginBottom:20,paddingLeft:10,paddingTop:4}}>Arama Başarılı</p> : null:null }
+            {searchError?<p className='message-error' style={{width:350,fontSize:20,paddingLeft:10,paddingTop:4,marginBottom:20}}>{searchError}</p> : null }
             <div className='customer-search'>
-                <input type="text" placeholder='Müşteri Adı Giriniz'/>
-                <button onClick={handleSearchByName}>Search</button>
-                <button onClick={handleShowAll}>Show All</button>
+                <input type="text" placeholder='Müşteri Adı Giriniz' name='name' value={searchCustomers.name} onChange={inputSearchChange} required={true}/>
+                <button onClick={handleSearchByName} style={{fontSize:16}}>Ara</button>
+                <button onClick={handleShowAll} style={{fontSize:16}}>Müşterileri Göster</button>
             </div>
         </div>
         <div className='customer-add'>
             <h3>Müşteri Ekle</h3>
             {
-                succes != undefined? succes ===false? <div className='message-error'>{error} !</div> : <div className='message-succes'>{succes}</div>:null
+                succes? succes ===false? <div className='message-error'>{error} </div> : <div className='message-succes'>{succes}</div>:null
             }
             <div className='customer-inputs'>
                 <input type="text" placeholder='Müşteri Adı' name='name' value={newcustomer.name} onChange={inputChange}/>
-                <input type="text" placeholder='Müşteri Email' name='email' value={newcustomer.email} onChange={inputChange}/>
+                <input type="email" placeholder='Müşteri Email' name='email' value={newcustomer.email} onChange={inputChange}/>
                 <input type="text" placeholder='Müşteri Adresi' name='address' value={newcustomer.address} onChange={inputChange}/>
                 <input type="text" placeholder='Müşterinin Yaşadığı Şehir' name='city' value={newcustomer.city} onChange={inputChange}/>
                 <input type='number' placeholder='Müşteri Telefonu' name='phone' value={newcustomer.phone} onChange={inputChange}/>
@@ -203,7 +246,7 @@ function Customer() {
                         </div>
                         <div className='newInput-box'>
                             <div>Müşteri Maili :</div>
-                            <input type="text" name='email' value={updateCustomer.email} onChange={inputUpdatCehange}/>
+                            <input type="email" name='email' value={updateCustomer.email} onChange={inputUpdatCehange}/>
                         </div>
                         <div className='newInput-box'>
                             <div>Müşteri Adresi :</div>

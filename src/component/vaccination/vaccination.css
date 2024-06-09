@@ -1,0 +1,109 @@
+.vaccine-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+    background-color: #f1f1f1;
+    min-height: 100vh;
+    h2{
+        margin-top: 3rem;
+        font-size: 2rem;
+    }
+    .vaccine-management{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 3rem;
+        width: 90%;
+        background-color: #fff;
+        border-radius: 10px;        
+        box-shadow: rgba(0, 0, 0, 0.1) 10px 5px 5px ;
+
+        .vaccine-add{
+            display: flex;
+            gap: 1rem;
+            height: 2rem;
+
+            input, select{
+                border-radius: 10px;
+                width: 10rem;
+                padding-left: 10px;
+            }
+        }
+        .vaccine-search{
+            display: flex;
+            gap: 6rem;
+
+            .vaccine-searchBox{
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 1rem;
+                .searchName{
+                    display: flex;
+                    gap: 2rem;
+                    height: 2rem;
+                    input{
+                        border-radius: 10px;
+                        padding-left: 10px;
+                    }
+                }
+            }
+        }
+        .showAll{
+            height: 2rem;
+            margin-bottom: 2rem;
+        }
+    }
+    .vaccine-list{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+        background-color: #fff;
+        width: 90%;
+        border-radius: 10px;
+        h3{
+            margin: 2% 0 .5% 0;
+        }
+        .vaccine-head, .vaccine-result{
+            display: flex;
+            padding: 0 5.9rem;
+            gap: 4.8rem;
+            font-size: 1.2rem;
+            background-color: rgb(172, 114, 230);
+            border-radius: 5px;
+            
+        }
+        .vaccine-result{
+            display: flex;
+            flex-direction: column;
+            background-color: #fff;
+            width: 100%;
+            padding: 0;
+            gap: 2rem;
+            .customer-button{
+                padding: 0;
+                gap: .5rem;
+                justify-content: end;
+                max-width: 6rem;
+            }
+            .vaccination-list{
+                display: flex;
+                flex-direction: row;
+                padding:0 ;
+                padding-left: 4rem;
+                gap: 4.5rem;
+            }
+        }
+    }
+}
+.input-days{
+    display: flex;
+    gap: 2rem;
+    input{
+        width: 10rem;
+    }
+}
